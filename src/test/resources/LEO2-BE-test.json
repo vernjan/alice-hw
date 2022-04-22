@@ -1,0 +1,19 @@
+[ {
+  "taskCode" : "A610360338",
+  "operationName" : "Close Forms",
+  "elementName" : "B1_A_L5_Core Wall",
+  "duration" : 16,
+  "crew" : {
+    "name" : "C_Carpenter Crew",
+    "assignment" : 1
+  },
+  "equipment" : [ ],
+  "dependencies" : [ "A163819636" ]
+}, {
+  "taskCode" : "A1747631627",
+  "operationName" : "Erect",
+  "elementName" : "B1_West_Mast Climber",
+  "duration" : 8,
+  "equipment" : [ ],
+  "dependencies" : [ "A1848402488" ]
+}]
