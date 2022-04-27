@@ -1,18 +1,17 @@
 package cz.vernjan.alice;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.util.List;
-
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.vernjan.alice.domain.TaskRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
+import java.util.List;
 
 /**
  * Load task records from a file located in application resources.
@@ -27,8 +26,8 @@ public class TaskRecordLoader {
 
     public List<TaskRecord> loadFromResource(String resourceName) {
         try {
-            File resourceFile = new ClassPathResource(resourceName).getFile();
-            List<TaskRecord> taskRecords = List.of(mapper.reader().readValue(resourceFile, TaskRecord[].class));
+            InputStream resourceInputStream = new ClassPathResource(resourceName).getInputStream();
+            List<TaskRecord> taskRecords = List.of(mapper.reader().readValue(resourceInputStream, TaskRecord[].class));
             LOG.info("Loaded {} task records from {}", taskRecords.size(), resourceName);
             return taskRecords;
         } catch (IOException e) {
